@@ -30,7 +30,11 @@ class _PantallaStreamState extends State<PantallaStream> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(_iconoEstado(estado), size: 56),
+                  Icon(
+                    _iconoEstado(estado),
+                    color: _colorEstado(estado),
+                    size: 56,
+                  ),
                   const SizedBox(height: 12),
                   Text(
                     _textoEstado(estado),
@@ -72,6 +76,18 @@ class _PantallaStreamState extends State<PantallaStream> {
         return Icons.settings_ethernet;
       case EstadoConexion.sinConexion:
         return Icons.wifi_off;
+    }
+  }
+
+  Color _colorEstado(EstadoConexion estado) {
+    switch (estado) {
+      case EstadoConexion.wifi:
+      case EstadoConexion.datosMoviles:
+        return Colors.green;
+      case EstadoConexion.otro:
+        return Colors.orange;
+      case EstadoConexion.sinConexion:
+        return Colors.red;
     }
   }
 }
